@@ -1,0 +1,23 @@
+apiVersion: example.crossplane.io/v1
+kind: WebApp
+metadata:
+  annotations:
+    terasky.backstage.io/source-info: >-
+      {"pushToGit":true,"gitBranch":"main","gitRepo":"github.com?owner=AnaMMedina21&repo=backstack-demo","gitLayout":"cluster-scoped","basePath":"demo-cluster/dev/WebApp"}
+    terasky.backstage.io/add-to-catalog: 'true'
+    terasky.backstage.io/owner: group:default/guests
+    terasky.backstage.io/system: dev
+    terasky.backstage.io/source-file-url: >-
+      https://github.com/AnaMMedina21/backstack-demo/blob/main/demo-cluster/dev/WebApp/app.yaml
+  name: app
+  namespace: dev
+spec:
+  scaling:
+    enabled: true
+    maxReplicas: 2
+    minReplicas: 1
+  image: nginx
+  port: 80
+  fqdn: test-app
+  crossplane:
+    compositionUpdatePolicy: Automatic
